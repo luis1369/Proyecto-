@@ -8,5 +8,5 @@ class APISERVICE(ABC):
 
     @abstractmethod
     def buscarIngrediente(self, ingredientName):
-        # Regresa un objeto tipo ingredient
+        # Regresa un objeto tipo ingredient :)
         pass

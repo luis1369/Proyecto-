@@ -1,8 +1,13 @@
 import requests
 import sqlite3
 import APISERVICE
-from abc import ABC, abstractmethod
+
+
+
+
+
+def main()
 
 
 if __name__ == '__main__':
-    pass
+    main()
