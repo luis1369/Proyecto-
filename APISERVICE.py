@@ -5,8 +5,3 @@ class APISERVICE(ABC):
     def buscarNombre(self, drinkName):
         # Regresa un objeto tipo dirnk :)
         pass
-
-    @abstractmethod
-    def buscarIngrediente(self, ingredientName):
-        # Regresa un objeto tipo ingredient :)
-        pass
