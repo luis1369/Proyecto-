@@ -1,6 +1,3 @@
-import requests
-import sqlite3
-import APISERVICE
 import APICLASS
 
 def buscar(apiclas):
@@ -35,10 +32,6 @@ def elegirLista(apiclas2):
     be = int(input("Elige una Bebida por su numero: "))
     lista = mostrarLista2(apiclas2)
 
-   # if lista[be].tags != None:
-    #    return str(f"Tu bebida es:" + "\n" + f"Nombre -> {lista[be].nombre}" + "\n" + f"Tags -> {lista[be].tags}" + "\n" + f"Categoria -> {lista[be].categoria}" + "\n" + f"Alcohol -> {lista[be].alcohol}" + "\n" + f"Vaso -> {lista[be].vaso}" + "\n" + f"Instrucciones -> {lista[be].instrucciones}" + "\n" + f"Imagen -> {lista[be].imagen}" + "\n" + f"Ingredientes -> {lista[be].ingredientes}" + "\n" + f"Medidas -> {lista[be].medidas}" + "\n" + f"Te pones Bien Electrico con -> {lista[be].bienElectrico}")
-    #if lista[be].tags == None:
-     #   return str(f"Tu bebida es:" + "\n" + f"Nombre -> {lista[be].nombre}" + "\n"  + f"Categoria -> {lista[be].categoria}" + "\n" + f"Alcohol -> {lista[be].alcohol}" + "\n" + f"Vaso -> {lista[be].vaso}" + "\n" + f"Instrucciones -> {lista[be].instrucciones}" + "\n" + f"Imagen -> {lista[be].imagen}" + "\n" + f"Ingredientes -> {lista[be].ingredientes}" + "\n" + f"Medidas -> {lista[be].medidas}" + "\n" + f"Te pones Bien Electrico con -> {lista[be].bienElectrico}")
     return lista[be]
 
 def actualizar(apiclas2, nombre, bienElectrico):
