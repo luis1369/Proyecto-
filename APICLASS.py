@@ -92,7 +92,27 @@ class guardarBebida(DBSERVICE.DBSERVICE):
         return (f"Bebida guardada con extio !!! ")
 
     def mostrarBebidas(self):
-        pass
+        bMostrar = self.cur.execute("SELECT * from favoritos").fetchall()
+
+        bebidas = []
+        i = 0
+        for b in bMostrar:
+            bebidas.append(bebida(b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10]))
+            i+=1
+
+        return bebidas
+
+    def borrarBebida(self, nombre):
+        self.cur.execute("DELETE FROM favoritos WHERE nombre = ?",(nombre,))
+        self.con.commit()
+
+        return ("Bebida Eliminada con Exito !!!")
+
+    def actualizarBebida(self, nombre, bienElectrico):
+        self.cur.execute("UPDATE favoritos SET bienElectrico= ? WHERE nombre=?",(bienElectrico, nombre))
+        self.con.commit()
+
+        return (f"La Bebida: {nombre} fue actualizada =) !!!")
 
 if __name__ == '__main__':
     db = guardarBebida()

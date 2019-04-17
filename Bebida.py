@@ -50,3 +50,11 @@ class AbstractBase(ABC):
     @abstractmethod
     def buscarBebidaF(self, nombre):
         pass
+
+    @abstractmethod
+    def borrarBebida(self, nombre):
+        pass
+
+    @abstractmethod
+    def actualizarBebida(self, nombre, bienElectrico):
+        pass
