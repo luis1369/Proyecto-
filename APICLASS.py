@@ -5,7 +5,7 @@ import APISERVICE
 import DBSERVICE
 from Bebida import bebida
 
-class buscarNombre(APISERVICE.APISERVICE):
+class APIBebida(APISERVICE.APISERVICE):
     def buscarNombre(self, drinkName):
         url = 'http://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + drinkName
         response = requests.get(url)
@@ -78,9 +78,10 @@ class buscarNombre(APISERVICE.APISERVICE):
 
             return b
 
-class guardarBebida(DBSERVICE.DBSERVICE):
-    def __init__(self):
-        self.con = sqlite3.connect('El_Fieston.db')
+class DB(DBSERVICE.DBSERVICE):
+    def __init__(self, archivo):
+        self.con = sqlite3.connect(archivo)
+        #self.con = sqlite3.connect('El_Fieston.db')
         self.cur = self.con.cursor()
 
     def guardarBebida(self, bebida):
@@ -110,9 +111,10 @@ class guardarBebida(DBSERVICE.DBSERVICE):
 
     def actualizarBebida(self, nombre, bienElectrico):
         self.cur.execute("UPDATE favoritos SET bienElectrico= ? WHERE nombre=?",(bienElectrico, nombre))
+        #print(bienElectrico,nombre)
         self.con.commit()
 
         return (f"La Bebida: {nombre} fue actualizada =) !!!")
 
 if __name__ == '__main__':
-    db = guardarBebida()
+    db = DB()
