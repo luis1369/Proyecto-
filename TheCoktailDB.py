@@ -34,7 +34,7 @@ def elegirLista(apiclas2):
     lista = mostrarLista2(apiclas2)
 
     return lista[be]
-
+1
 def actualizar(apiclas2, nombre, bienElectrico):
     actu = apiclas2.actualizarBebida(nombre, bienElectrico)
     return actu
@@ -59,6 +59,7 @@ def main():
             if gb == 0:
                 #guardo la bebida
                 guardar(apiclas2, bde)
+
                 opcion = int(input("MENU"+"\n"+"1 -> Buscar Bebida "+"\n"+"2 -> Mostrar Bebidas Guardadas "+ "\n3 -> Actualizar Bebida " +"\n4 -> Borrar Bebida" +"\n"+"5 -> Salir " + "\nOpcion: "))
             elif gb == 1:
                 #muestro el menu de nuevo porque no se guardo la bebida

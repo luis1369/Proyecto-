@@ -4,10 +4,8 @@ import os
 from Bebida import bebida
 from unittest.mock import patch
 from unittest.mock import MagicMock
-from APICLASS import *
-#from unittest import TestCase
-#TestCase.maxDiff = None
-from types import *
+from APICLASS import DB
+from APICLASS import APIBebida
 
 #Pruebas Unitarias
 '''class TestAPICLASS(unittest.TestCase):
@@ -26,7 +24,7 @@ from types import *
     def myfunc(self):
         pass'''
 
-#Pruebas de integracion para la base de datos
+#Pruebas de Integracion
 class TestAPICLASSI(unittest.TestCase):
     #Crear la base y darle valores
     def setUp(self):
@@ -104,36 +102,37 @@ class TestAPICLASSI(unittest.TestCase):
 
     #Muestro las bebidas
     def testShowAll(self):
-        entrada = [bebida(12370, "Tequila Sour", "None", "Ordinary Drink", "Alcoholic", "Whiskey sour glass", "Shake tequila, juice of lemon, and powdered sugar with ice and strain into a whiskey sour glass. Add the half-slice of lemon, top with the cherry, and serve.", "https://www.thecocktaildb.com/images/media/drink/ek0mlq1504820601.jpg", "Tequila, Lemon, Powdered sugar, Lemon, Cherry, , , , , , , , , , , ", "2 oz , Juice of 1/2 , 1 tsp , 1/2 slice , 1 ,  ,  ,  ,  ,  , , , , , , ", 10),
-                bebida(13621, "Tequila Sunrise", "IBA,ContemporaryClassic", "Cocktail", "Alcoholic", "Highball glass", "Pour the tequila and orange juice into glass over ice. Add the grenadine, which will sink to the bottom. Stir gently to create the sunrise effect. Garnish and serve.", "https://www.thecocktaildb.com/images/media/drink/quqyqp1480879103.jpg", "Tequila, Orange juice, Grenadine, , , , , , , , , , , , , ", "2 measures , , , , , , , , , , , , , , , ", 7),
-                bebida(11000, "Mojito", "IBA,ContemporaryClassic,Alcoholic,USA", "Cocktail", "Alcoholic", "Highball glass", "Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with cracked ice. Pour the rum and top with soda water. Garnish and serve with straw.", "https://www.thecocktaildb.com/images/media/drink/rxtqps1478251029.jpg", "Light rum, Lime, Sugar, Mint, Soda water, , , , , , , , , , , ", "2-3 oz , Juice of 1 , 2 tsp , 2-4 , , , , , , , , , , , , ", 10),
-                bebida(12770, "Iced Coffee", "None", "Coffee / Tea", "Non alcoholic", "Coffee mug", "Mix together until coffee and sugar is dissolved. Add milk. Shake well. Using a blender or milk shake maker produces a very foamy drink. Serve in coffee mug.", "https://www.thecocktaildb.com/images/media/drink/ytprxy1454513855.jpg", "Coffee, Sugar, Water, Milk, , , , , , , , , , , , ", "1/4 cup instant , 1/4 cup , 1/4 cup hot , 4 cups cold ,  ,  ,  ,  ,  , , , , , , , ", 7),
-                bebida(11007, "Margarita", "IBA,ContemporaryClassic", "Ordinary Drink", "Alcoholic", "Cocktail glass", "Rub the rim of the glass with the lime slice to make the salt stick to it. Take care to moisten only the outer rim and sprinkle the salt on it. The salt should present to the lips of the imbiber and never mix into the cocktail. Shake the other ingredients with ice, then carefully pour into the glass.", "https://www.thecocktaildb.com/images/media/drink/wpxpvu1439905379.jpg", "Tequila, Triple sec, Lime juice, Salt, , , , , , , , , , , , ", "1 1/2 oz , 1/2 oz , 1 oz , , , , , , , , , , , , , ", 9)]
-
         salida_esperada = [bebida(12370, "Tequila Sour", "None", "Ordinary Drink", "Alcoholic", "Whiskey sour glass", "Shake tequila, juice of lemon, and powdered sugar with ice and strain into a whiskey sour glass. Add the half-slice of lemon, top with the cherry, and serve.", "https://www.thecocktaildb.com/images/media/drink/ek0mlq1504820601.jpg", "Tequila, Lemon, Powdered sugar, Lemon, Cherry, , , , , , , , , , , ", "2 oz , Juice of 1/2 , 1 tsp , 1/2 slice , 1 ,  ,  ,  ,  ,  , , , , , , ", 10),
                 bebida(13621, "Tequila Sunrise", "IBA,ContemporaryClassic", "Cocktail", "Alcoholic", "Highball glass", "Pour the tequila and orange juice into glass over ice. Add the grenadine, which will sink to the bottom. Stir gently to create the sunrise effect. Garnish and serve.", "https://www.thecocktaildb.com/images/media/drink/quqyqp1480879103.jpg", "Tequila, Orange juice, Grenadine, , , , , , , , , , , , , ", "2 measures , , , , , , , , , , , , , , , ", 7),
                 bebida(11000, "Mojito", "IBA,ContemporaryClassic,Alcoholic,USA", "Cocktail", "Alcoholic", "Highball glass", "Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with cracked ice. Pour the rum and top with soda water. Garnish and serve with straw.", "https://www.thecocktaildb.com/images/media/drink/rxtqps1478251029.jpg", "Light rum, Lime, Sugar, Mint, Soda water, , , , , , , , , , , ", "2-3 oz , Juice of 1 , 2 tsp , 2-4 , , , , , , , , , , , , ", 10),
                 bebida(12770, "Iced Coffee", "None", "Coffee / Tea", "Non alcoholic", "Coffee mug", "Mix together until coffee and sugar is dissolved. Add milk. Shake well. Using a blender or milk shake maker produces a very foamy drink. Serve in coffee mug.", "https://www.thecocktaildb.com/images/media/drink/ytprxy1454513855.jpg", "Coffee, Sugar, Water, Milk, , , , , , , , , , , , ", "1/4 cup instant , 1/4 cup , 1/4 cup hot , 4 cups cold ,  ,  ,  ,  ,  , , , , , , , ", 7),
                 bebida(11007, "Margarita", "IBA,ContemporaryClassic", "Ordinary Drink", "Alcoholic", "Cocktail glass", "Rub the rim of the glass with the lime slice to make the salt stick to it. Take care to moisten only the outer rim and sprinkle the salt on it. The salt should present to the lips of the imbiber and never mix into the cocktail. Shake the other ingredients with ice, then carefully pour into the glass.", "https://www.thecocktaildb.com/images/media/drink/wpxpvu1439905379.jpg", "Tequila, Triple sec, Lime juice, Salt, , , , , , , , , , , , ", "1 1/2 oz , 1/2 oz , 1 oz , , , , , , , , , , , , , ", 9)]
 
-        '''dbMock = MagicMock()
-        dbMock.mostrar.return_value = entrada'''
+        a = self.db.mostrarBebidas()
+        self.assertEqual(salida_esperada[0], a[0])
+        i=0
+        for x in salida_esperada:
+            self.assertEqual(salida_esperada[i], a[i])
+            i+=1
 
-        salida = (salida_esperada[0], salida_esperada[1], salida_esperada[2], salida_esperada[3], salida_esperada[4])
-        real = (entrada[0], entrada[1], entrada[2], entrada[3], entrada[4])
+    #Busco una bebida conectandome a la API TheCocktailDB, enlistando las bebidas encontradas
+    def testFindBebida(self):
+        self.api = APIBebida()
+        nombre = "Mojito"
+        salida_esperada = ['Bebida Mojito numero 0', 'Bebida Mojito #3 numero 1']
+        real = self.api.buscarNombre(nombre)
+        self.assertEqual(salida_esperada, real)
 
-        real2 = self.db.mostrarBebidas()
+    #Busco una bebida conectandome a la API TheCocktailDB y lo seleccione, para despudes crear un objeto bebida
+    def testCreateBebida(self):
+        self.api = APIBebida()
+        nombre = "Mojito"
+        numero = 0
+        salida_esperada = bebida(11000, "Mojito", "IBA,ContemporaryClassic,Alcoholic,USA", "Cocktail", "Alcoholic", "Highball glass", "Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with cracked ice. Pour the rum and top with soda water. Garnish and serve with straw.", "https://www.thecocktaildb.com/images/media/drink/rxtqps1478251029.jpg", "Light rum, Lime, Sugar, Mint, Soda water, , , , , , , , , , , ", "2-3 oz , Juice of 1 , 2 tsp , 2-4 , , , , , , , , , , , , ", 10)
+        real = self.api.getBebida(numero, nombre)
+        self.assertEqual(type(salida_esperada), type(real))
+        self.assertEqual(salida_esperada.id, int(real.id))
 
-        #salida = (salida_esperada[0].id, salida_esperada[0].nombre, salida_esperada[0].tags, salida_esperada[0].categoria, salida_esperada[0].alcohol, salida_esperada[0].vaso, salida_esperada[0].instrucciones, salida_esperada[0].imagen, salida_esperada[0].ingredientes, salida_esperada[0].medidas, salida_esperada[0].bienElectrico)
-        #real = (entrada[0].id, entrada[0].nombre, entrada[0].tags, entrada[0].categoria, entrada[0].alcohol, entrada[0].vaso, entrada[0].instrucciones, entrada[0].imagen, entrada[0].ingredientes, entrada[0].medidas, entrada[0].bienElectrico)
-
-        #print(entrada[3])
-        #print(salida_esperada[3])
-        #real = self.db.mostrarBebidas()
-        
-
-
-        self.assertEqual(salida_esperada, real2)
 
 if __name__ == '__main__':
     unittest.main()
