@@ -47,7 +47,7 @@ class APIBebida(APISERVICE.APISERVICE):
             ingredientes = ""
             ing = 1
             while ing <= 15:
-                if idDrink[bebidaElegida].get(f"strIngredient{ing}") != "" or idDrink[bebidaElegida].get(f"strIngredient{ing}") != " ":
+                if idDrink[bebidaElegida].get(f"strIngredient{ing}") != "" or idDrink[bebidaElegida].get(f"strIngredient{ing}") != " " or idDrink[bebidaElegida].get(f"strIngredient{ing}") is None:
                     ingredientes += idDrink[bebidaElegida].get(f"strIngredient{ing}")
                     ingredientes += ", "
                     ing += 1
@@ -55,7 +55,7 @@ class APIBebida(APISERVICE.APISERVICE):
             medidas = ""
             med = 1
             while med <= 15:
-                if idDrink[bebidaElegida].get(f"strMeasure{med}") != "" or idDrink[bebidaElegida].get( f"strMeasure{med}") != " " or idDrink[bebidaElegida].get(f"strMeasure{med}") != "\n":
+                if idDrink[bebidaElegida].get(f"strMeasure{med}") != "" or idDrink[bebidaElegida].get( f"strMeasure{med}") != " " or idDrink[bebidaElegida].get(f"strMeasure{med}") != "\n" or idDrink[bebidaElegida].get(f"strMeasure{med}") is None:
                     medidas += idDrink[bebidaElegida].get(f"strMeasure{med}")
                     medidas += ", "
                     med += 1
