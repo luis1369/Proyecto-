@@ -8,21 +8,43 @@ from APICLASS import DB
 from APICLASS import APIBebida
 
 #Pruebas Unitarias
-'''class TestAPICLASS(unittest.TestCase):
-    #pruebas unitarias
+class TestAPICLASS(unittest.TestCase):
+    #Prueba Unitaria en donde me conecto a la API TheCocktailDB, enlistando las bebidas encontradas
     @patch('requests.get')
     def test_buscarNombre(self, mock_get):
-        test_cases = ((['Bebida Mojito numero 0', 'Bebida Mojito #3 numero 1']),)
+        test_cases = (
+            ("Mojito", ['Bebida Mojito numero 0', 'Bebida Mojito #3 numero 1'], lambda: {"drinks": [{"strDrink": "Mojito"}, {"strDrink": "Mojito #3"}]}),
+            ("Margarita", ['Bebida Margarita numero 0', 'Bebida Blue Margarita numero 1', "Bebida Tommy's Margarita numero 2", 'Bebida Whitecap Margarita numero 3', 'Bebida Strawberry Margarita numero 4'], lambda: {"drinks": [{"strDrink": "Margarita"}, {"strDrink": "Blue Margarita"}, {"strDrink": "Tommy's Margarita"}, {"strDrink": "Whitecap Margarita"}, {"strDrink": "Strawberry Margarita"}]}),
+            ("Tequila", ['Bebida Tequila Fizz numero 0', 'Bebida Tequila Sour numero 1', 'Bebida Tequila Sunrise numero 2', 'Bebida Tequila Slammer numero 3', 'Bebida Tequila Surprise numero 4'], lambda: {"drinks": [{"strDrink": "Tequila Fizz"}, {"strDrink": "Tequila Sour"}, {"strDrink": "Tequila Sunrise"}, {"strDrink": "Tequila Slammer"}, {"strDrink": "Tequila Surprise"}]})
+        )
 
         buscar = APIBebida()
 
-        for entrada,esperado in test_cases:
+        for entrada,esperado,funcion in test_cases:
             mock_get.return_value.status_code = 200
-            #mock_get.return_value.json = myfunc
+            mock_get.return_value.json = funcion
 
+            salida_real = buscar.buscarNombre(entrada)
+            self.assertEqual(salida_real, esperado)
 
-    def myfunc(self):
-        pass'''
+    #Prueba Unitaria en donde busco una bebida conectandome a la API TheCocktailDB y lo seleccione, para despudes crear un objeto bebida
+    @patch('requests.get')
+    def test_getBebida(self, mock_get):
+        test_cases = (
+            (0, "Mojito", lambda: {"drinks": [{"idDrink": 11000}, {"strDrink": "Mojito"}, {"strTags": "IBA,ContemporaryClassic,Alcoholic,USA"}, {"strCategory": "Cocktail"}, {"strAlcoholic": "Alcoholic"}, {"strGlass": "Highball glass"}, {"strInstructions": "Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with cracked ice. Pour the rum and top with soda water. Garnish and serve with straw."}, {"strDrinkThumb": "https://www.thecocktaildb.com/images/media/drink/rxtqps1478251029.jpg"}, {"strIngredient1": "Light rum"}, {"strIngredient2": "Lime"}, {"strIngredient3": "Sugar"}, {"strIngredient4": "Mint"}, {"strIngredient5": "Soda water"}, {"strMeasure1": "2-3 oz "}, {"strMeasure2": "Juice of 1 "}, {"strMeasure3": "2 tsp "}, {"strMeasure4": "2-4 "}]}, bebida(11000, "Mojito", "IBA,ContemporaryClassic,Alcoholic,USA", "Cocktail", "Alcoholic", "Highball glass", "Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with cracked ice. Pour the rum and top with soda water. Garnish and serve with straw.", "https://www.thecocktaildb.com/images/media/drink/rxtqps1478251029.jpg", "Light rum, Lime, Sugar, Mint, Soda water, , , , , , , , , , , ", "2-3 oz , Juice of 1 , 2 tsp , 2-4 , , , , , , , , , , , , ", 10)),
+            #("Margarita", 0, bebida(11007, "Margarita", "IBA,ContemporaryClassic", "Ordinary Drink", "Alcoholic", "Cocktail glass", "Rub the rim of the glass with the lime slice to make the salt stick to it. Take care to moisten only the outer rim and sprinkle the salt on it. The salt should present to the lips of the imbiber and never mix into the cocktail. Shake the other ingredients with ice, then carefully pour into the glass.", "https://www.thecocktaildb.com/images/media/drink/wpxpvu1439905379.jpg", "Tequila, Triple sec, Lime juice, Salt, , , , , , , , , , , , ", "1 1/2 oz , 1/2 oz , 1 oz , , , , , , , , , , , , , ", 9)),
+            #("Tequila", 1, bebida(12370, "Tequila Sour", "None", "Ordinary Drink", "Alcoholic", "Whiskey sour glass", "Shake tequila, juice of lemon, and powdered sugar with ice and strain into a whiskey sour glass. Add the half-slice of lemon, top with the cherry, and serve.", "https://www.thecocktaildb.com/images/media/drink/ek0mlq1504820601.jpg", "Tequila, Lemon, Powdered sugar, Lemon, Cherry, , , , , , , , , , , ", "2 oz , Juice of 1/2 , 1 tsp , 1/2 slice , 1 ,  ,  ,  ,  ,  , , , , , , ", 10))
+        )
+
+        buscar = APIBebida()
+
+        for entradaNumero,entradaNombre, funcion, esperado in test_cases:
+            mock_get.return_value.status_code = 200
+            mock_get.return_value.json = funcion
+            salida_real = buscar.getBebida(entradaNumero, entradaNombre)
+            #print(type(salida_real.id))
+            #print(esperado.id)
+            self.assertEqual(salida_real.id, esperado.id)
 
 #Pruebas de Integracion
 class TestAPICLASSI(unittest.TestCase):
@@ -132,7 +154,6 @@ class TestAPICLASSI(unittest.TestCase):
         real = self.api.getBebida(numero, nombre)
         self.assertEqual(type(salida_esperada), type(real))
         self.assertEqual(salida_esperada.id, int(real.id))
-
 
 if __name__ == '__main__':
     unittest.main()

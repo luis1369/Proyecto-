@@ -35,17 +35,6 @@ class APIBebida(APISERVICE.APISERVICE):
             response_json = response.json()  # DiccionarioJ con elemento de una lista
             idDrink = response_json['drinks']  # Elemento de la lista que es un diccionario
 
-            i = 0  # variable de control para obtener los nombres de los resultados a buscar
-            nombreBebidas = []  # almaceno en una lista los nombres de los resultados a buscar
-            infoBebidas = []  # almaceno todos los elementos de todas las bebidas
-            for clave in idDrink:
-                clave = idDrink[i].get("strDrink")  # imprimo los nombres de los resultados
-                nombreBebidas.append((f"Bebida {clave} numero {i}"))
-
-                clave = idDrink[i]  # guardo cada diccionario de cada bebida
-                infoBebidas.append(clave)
-                i += 1
-
             # asignamos el valor de bebida
             id = idDrink[bebidaElegida].get("idDrink")
             nombre = idDrink[bebidaElegida].get("strDrink")
