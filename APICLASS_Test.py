@@ -28,12 +28,10 @@ class TestAPICLASS(unittest.TestCase):
             self.assertEqual(salida_real, esperado)
 
     #Prueba Unitaria en donde busco una bebida conectandome a la API TheCocktailDB y lo seleccione, para despudes crear un objeto bebida
-    @patch('requests.get')
+    '''@patch('requests.get')
     def test_getBebida(self, mock_get):
         test_cases = (
             (0, "Mojito", lambda: {"drinks": [{"idDrink": 11000}, {"strDrink": "Mojito"}, {"strTags": "IBA,ContemporaryClassic,Alcoholic,USA"}, {"strCategory": "Cocktail"}, {"strAlcoholic": "Alcoholic"}, {"strGlass": "Highball glass"}, {"strInstructions": "Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with cracked ice. Pour the rum and top with soda water. Garnish and serve with straw."}, {"strDrinkThumb": "https://www.thecocktaildb.com/images/media/drink/rxtqps1478251029.jpg"}, {"strIngredient1": "Light rum"}, {"strIngredient2": "Lime"}, {"strIngredient3": "Sugar"}, {"strIngredient4": "Mint"}, {"strIngredient5": "Soda water"}, {"strMeasure1": "2-3 oz "}, {"strMeasure2": "Juice of 1 "}, {"strMeasure3": "2 tsp "}, {"strMeasure4": "2-4 "}]}, bebida(11000, "Mojito", "IBA,ContemporaryClassic,Alcoholic,USA", "Cocktail", "Alcoholic", "Highball glass", "Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with cracked ice. Pour the rum and top with soda water. Garnish and serve with straw.", "https://www.thecocktaildb.com/images/media/drink/rxtqps1478251029.jpg", "Light rum, Lime, Sugar, Mint, Soda water, , , , , , , , , , , ", "2-3 oz , Juice of 1 , 2 tsp , 2-4 , , , , , , , , , , , , ", 10)),
-            #("Margarita", 0, bebida(11007, "Margarita", "IBA,ContemporaryClassic", "Ordinary Drink", "Alcoholic", "Cocktail glass", "Rub the rim of the glass with the lime slice to make the salt stick to it. Take care to moisten only the outer rim and sprinkle the salt on it. The salt should present to the lips of the imbiber and never mix into the cocktail. Shake the other ingredients with ice, then carefully pour into the glass.", "https://www.thecocktaildb.com/images/media/drink/wpxpvu1439905379.jpg", "Tequila, Triple sec, Lime juice, Salt, , , , , , , , , , , , ", "1 1/2 oz , 1/2 oz , 1 oz , , , , , , , , , , , , , ", 9)),
-            #("Tequila", 1, bebida(12370, "Tequila Sour", "None", "Ordinary Drink", "Alcoholic", "Whiskey sour glass", "Shake tequila, juice of lemon, and powdered sugar with ice and strain into a whiskey sour glass. Add the half-slice of lemon, top with the cherry, and serve.", "https://www.thecocktaildb.com/images/media/drink/ek0mlq1504820601.jpg", "Tequila, Lemon, Powdered sugar, Lemon, Cherry, , , , , , , , , , , ", "2 oz , Juice of 1/2 , 1 tsp , 1/2 slice , 1 ,  ,  ,  ,  ,  , , , , , , ", 10))
         )
 
         buscar = APIBebida()
@@ -44,7 +42,7 @@ class TestAPICLASS(unittest.TestCase):
             salida_real = buscar.getBebida(entradaNumero, entradaNombre)
             #print(type(salida_real.id))
             #print(esperado.id)
-            self.assertEqual(salida_real.id, esperado.id)
+            self.assertEqual(salida_real.id, esperado.id)'''
 
 #Pruebas de Integracion
 class TestAPICLASSI(unittest.TestCase):
