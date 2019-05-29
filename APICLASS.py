@@ -79,7 +79,7 @@ class DB(DBSERVICE.DBSERVICE):
         #self.cursor.execute("INSERT INTO favoritos VALUES (?,?,?,?,?,?,?,?,?,?,?)", b)
         self.con.commit()
 
-        return (f"Bebida guardada con extio !!! ")
+        return (f"Bebida guardada con extio!!! ")
 
     def mostrarBebidas(self):
         bMostrar = self.cur.execute("SELECT * from favoritos").fetchall()
